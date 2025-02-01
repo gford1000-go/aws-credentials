@@ -15,6 +15,11 @@ type AWSCredentials struct {
 	secretAccessKey string
 }
 
+// ID returns the id associated with these credentials
+func (a *AWSCredentials) ID() CredentialsID {
+	return a.id
+}
+
 // CredentialsID specifies a given set of credentials
 type CredentialsID string
 
