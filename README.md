@@ -11,11 +11,11 @@ func main() {
     var accessKeyID = "A"
     var secretAccessKey = "B"
 
-    // Store AWS credentials into context
-    ctx, _err_ := ContextWithAWSCredentials(context.Background(), NewAWSCredentials(accessKeyID, secretAccessKey))
+    // Store AWS credentials into context against a particular id
+    ctx, _err_ := ContextWithAWSCredentials(context.Background(), NewAWSCredentials("SomeID", accessKeyID, secretAccessKey))
 
-    // Create provider when needed, to inject into AWS config
-    provider, _ := GetCredentialsProvider(ctx)
+    // Create provider when needed, to inject desired credentials into AWS config
+    provider, _ := GetCredentialsProvider(ctx, "SomeID")
 
     // Create config using values
     cfg, _ := config.LoadDefaultConfig(ctx, config.WithCredentialsProvider(provider))
